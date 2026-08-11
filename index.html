@@ -1,0 +1,887 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>My Agenda & Routine 🌸🍀</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3652/3652191.png">
+    
+    <!-- Polices Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        :root {
+            /* Thème 1: Girly Romance (Default) */
+            --bg-page: #fff0f5;
+            --bg-card: #ffffff;
+            --primary: #d53f8c;
+            --primary-soft: #f472b6;
+            --accent: #9f7aea;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --border-color: #fbb6ce;
+            --shadow-color: rgba(213, 63, 140, 0.12);
+            --font-hand: 'Caveat', cursive;
+            --font-title: 'Playfair Display', serif;
+            --font-main: 'Poppins', sans-serif;
+            
+            --block-1-bg: #fffbeb; --block-1-border: #fef3c7;
+            --block-2-bg: #f0fdf4; --block-2-border: #bbf7d0;
+            --block-3-bg: #faf5ff; --block-3-border: #e9d5ff;
+        }
+
+        /* Thèmes additionnels */
+        [data-theme="ladyboss"] {
+            --bg-page: #fdfbf7; --bg-card: #ffffff; --primary: #b7791f; --primary-soft: #d69e2e; --accent: #2b6cb0; --text-main: #1a202c; --text-muted: #718096; --border-color: #e2e8f0; --shadow-color: rgba(183, 121, 31, 0.12);
+            --block-1-bg: #fffbeb; --block-1-border: #fef3c7; --block-2-bg: #f7fafc; --block-2-border: #e2e8f0; --block-3-bg: #fffaf0; --block-3-border: #feebc8;
+        }
+        [data-theme="chic"] {
+            --bg-page: #f7fafc; --bg-card: #ffffff; --primary: #2d3748; --primary-soft: #718096; --accent: #cbd5e0; --text-main: #1a202c; --text-muted: #a0aec0; --border-color: #e2e8f0; --shadow-color: rgba(45, 55, 72, 0.08);
+            --block-1-bg: #edf2f7; --block-1-border: #e2e8f0; --block-2-bg: #f7fafc; --block-2-border: #edf2f7; --block-3-bg: #e2e8f0; --block-3-border: #cbd5e0;
+        }
+        [data-theme="dark"] {
+            --bg-page: #1a202c; --bg-card: #2d3748; --primary: #63b3ed; --primary-soft: #3182ce; --accent: #9f7aea; --text-main: #f7fafc; --text-muted: #a0aec0; --border-color: #4a5568; --shadow-color: rgba(0, 0, 0, 0.3);
+            --block-1-bg: #2a4365; --block-1-border: #2b6cb0; --block-2-bg: #22543d; --block-2-border: #2f855a; --block-3-bg: #44337a; --block-3-border: #553c9a;
+        }
+        [data-theme="matcha"] {
+            --bg-page: #f0fdf4; --bg-card: #ffffff; --primary: #2e7d32; --primary-soft: #66bb6a; --accent: #81c784; --text-main: #1b5e20; --text-muted: #4caf50; --border-color: #a5d6a7; --shadow-color: rgba(46, 125, 50, 0.12);
+            --block-1-bg: #f1f8e9; --block-1-border: #dededd; --block-2-bg: #e8f5e9; --block-2-border: #c8e6c9; --block-3-bg: #f0f4c3; --block-3-border: #e6ee9c;
+        }
+        [data-theme="ocean"] {
+            --bg-page: #f0f8ff; --bg-card: #ffffff; --primary: #0284c7; --primary-soft: #38bdf8; --accent: #7dd3fc; --text-main: #0c4a6e; --text-muted: #0284c7; --border-color: #bae6fd; --shadow-color: rgba(2, 132, 199, 0.12);
+            --block-1-bg: #e0f2fe; --block-1-border: #bae6fd; --block-2-bg: #f0f9ff; --block-2-border: #e0f2fe; --block-3-bg: #e0e7ff; --block-3-border: #c7d2fe;
+        }
+        [data-theme="lavender"] {
+            --bg-page: #faf5ff; --bg-card: #ffffff; --primary: #7e22ce; --primary-soft: #a855f7; --accent: #c084fc; --text-main: #3b0764; --text-muted: #7e22ce; --border-color: #e9d5ff; --shadow-color: rgba(126, 34, 206, 0.12);
+            --block-1-bg: #f3e8ff; --block-1-border: #e9d5ff; --block-2-bg: #fae8ff; --block-2-border: #f5d0fe; --block-3-bg: #f0fdf4; --block-3-border: #bbf7d0;
+        }
+        [data-theme="peach"] {
+            --bg-page: #fff7ed; --bg-card: #ffffff; --primary: #ea580c; --primary-soft: #fb923c; --accent: #fdba74; --text-main: #7c2d12; --text-muted: #c2410c; --border-color: #ffedd5; --shadow-color: rgba(234, 88, 12, 0.12);
+            --block-1-bg: #ffedd5; --block-1-border: #fed7aa; --block-2-bg: #fef3c7; --block-2-border: #fde68a; --block-3-bg: #ffe4e6; --block-3-border: #fecdd3;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-main); -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg-page); color: var(--text-main); transition: all 0.3s ease; padding-bottom: 75px; overflow-x: hidden; }
+
+        /* Splash Screen */
+        #splash-screen {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 99999; animation: fadeOutSplash 0.8s ease-in-out 1.8s forwards;
+        }
+        .splash-logo { font-family: var(--font-hand); font-size: 38px; font-weight: 700; color: var(--primary); animation: zoomLogo 1s ease-out; }
+        @keyframes zoomLogo { 0% { transform: scale(0.85); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes fadeOutSplash { to { opacity: 0; visibility: hidden; } }
+
+        /* Header Fixe */
+        header.top-header {
+            background: var(--bg-card); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px var(--shadow-color);
+        }
+        .brand-title { font-family: var(--font-hand); font-size: 26px; font-weight: 700; color: var(--primary); }
+        .action-btns { display: flex; gap: 8px; }
+        .btn-mini {
+            background: var(--bg-page); color: var(--primary); border: 1px solid var(--border-color);
+            padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all 0.2s;
+        }
+        .btn-mini:hover { background: var(--primary); color: white; }
+
+        /* Structure des Pages */
+        .page-container { max-width: 600px; margin: 0 auto; padding: 15px; }
+        .page { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+        .journal-book {
+            background: var(--bg-card); border-radius: 24px; padding: 20px; border: 2px solid var(--border-color); box-shadow: 0 8px 25px var(--shadow-color); position: relative;
+        }
+        .decor-header { text-align: center; margin-bottom: 15px; }
+        .decor-header h1 { font-family: var(--font-hand); font-size: 32px; color: var(--primary); line-height: 1.1; margin-bottom: 4px; }
+        .subtitle { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+
+        /* Barre de Date & Jours (Dimanche = 1er jour) */
+        .date-bar {
+            background: var(--bg-page); border-radius: 16px; padding: 10px 14px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;
+        }
+        .date-picker-input { border: none; background: transparent; color: var(--primary); font-weight: 600; font-size: 14px; outline: none; }
+        .day-pills { display: flex; gap: 4px; }
+        .day-pill { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: var(--text-muted); background: var(--bg-card); }
+        .day-pill.active { background: var(--primary); color: #ffffff; }
+
+        /* Blocs du Planner */
+        .time-block { border-radius: 16px; padding: 14px; margin-bottom: 14px; border: 1px solid transparent; transition: all 0.2s; }
+        .block-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 8px; }
+        .block-title-input { font-family: var(--font-main); font-weight: 600; font-size: 14px; color: var(--text-main); background: transparent; border: none; outline: none; border-bottom: 1px dashed transparent; width: 55%; }
+        .block-title-input:focus { border-bottom-color: var(--primary); }
+        
+        .time-badge { font-size: 10px; padding: 4px 10px; border-radius: 12px; background: rgba(255,255,255,0.85); color: var(--text-muted); font-weight: 500; cursor: pointer; border: 1px solid var(--border-color); white-space: nowrap; }
+        .time-badge:hover { background: var(--primary); color: white; }
+
+        /* Listes de Tâches */
+        .task-list { display: flex; flex-direction: column; gap: 8px; }
+        .task-item { display: flex; align-items: center; gap: 10px; position: relative; }
+        .custom-check {
+            width: 18px; height: 18px; border-radius: 6px; border: 2px solid var(--primary-soft);
+            display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; background: #ffffff; transition: all 0.2s;
+        }
+        .custom-check.checked { background: var(--primary); border-color: var(--primary); }
+        .custom-check.checked::after { content: '✓'; color: white; font-size: 11px; font-weight: bold; }
+        .task-input-text { border: none; background: transparent; width: 100%; font-size: 13px; color: var(--text-main); outline: none; border-bottom: 1px dashed transparent; }
+        .task-input-text:focus { border-bottom-color: var(--primary); }
+        .task-item.done .task-input-text { text-decoration: line-through; opacity: 0.6; }
+
+        .add-task-btn { background: none; border: none; color: var(--primary); font-size: 12px; font-weight: 600; cursor: pointer; margin-top: 8px; display: flex; align-items: center; gap: 4px; }
+        .delete-btn { font-size: 12px; color: #e53e3e; cursor: pointer; opacity: 0.6; padding: 2px 6px; border-radius: 50%; }
+        .delete-btn:hover { opacity: 1; background: #fed7d7; }
+
+        /* Calendrier & Objectifs */
+        .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+        .day-name { font-size: 11px; font-weight: 600; color: var(--text-muted); padding-bottom: 4px; }
+        .cal-day {
+            aspect-ratio: 1; border-radius: 12px; background: var(--bg-page);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 600; cursor: pointer; position: relative; border: 1px solid transparent;
+        }
+        .cal-day.active-day { border-color: var(--primary); background: var(--bg-card); color: var(--primary); }
+        .cal-day .mood-dot { font-size: 10px; position: absolute; bottom: 2px; }
+
+        .goals-container { margin-top: 25px; background: var(--bg-page); border-radius: 18px; padding: 15px; }
+        .goals-title { font-family: var(--font-title); font-size: 16px; color: var(--primary); margin-bottom: 12px; font-weight: 600; }
+        .goal-item { margin-bottom: 10px; }
+        .goal-label { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--primary-soft); margin-bottom: 3px; display: block; }
+        .goal-input { width: 100%; border: 1px solid var(--border-color); border-radius: 10px; padding: 8px 12px; font-size: 12px; background: var(--bg-card); outline: none; }
+
+        /* Journal */
+        .mood-box { display: flex; justify-content: space-around; padding: 12px; background: var(--bg-page); border-radius: 16px; margin-bottom: 15px; }
+        .mood-emoji { font-size: 26px; cursor: pointer; filter: grayscale(0.8); transition: transform 0.2s; }
+        .mood-emoji.selected { filter: grayscale(0); transform: scale(1.3); }
+
+        textarea.journal-text {
+            width: 100%; height: 120px; border: 1px solid var(--border-color); border-radius: 14px;
+            padding: 12px; font-size: 13px; line-height: 1.5; resize: none; outline: none;
+            background: var(--bg-page); color: var(--text-main); margin-bottom: 15px;
+        }
+
+        /* Navigation Bas */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: var(--bg-card); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -2px 10px var(--shadow-color); }
+        .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); text-decoration: none; font-size: 10px; font-weight: 500; gap: 3px; cursor: pointer; width: 25%; }
+        .nav-item .nav-icon { font-size: 20px; }
+        .nav-item.active { color: var(--primary); font-weight: 600; }
+
+        /* Écran & Modal de Verrouillage PIN */
+        #lock-screen {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: var(--bg-page); z-index: 999999; display: none;
+            flex-direction: column; justify-content: center; align-items: center; padding: 30px; text-align: center;
+        }
+        .lock-logo { font-family: var(--font-hand); font-size: 38px; color: var(--primary); margin-bottom: 15px; }
+        .pin-input-group { display: flex; gap: 12px; margin: 20px 0; }
+        .pin-digit {
+            width: 50px; height: 50px; border-radius: 14px; border: 2px solid var(--border-color);
+            background: #ffffff; font-size: 22px; text-align: center; outline: none; color: var(--primary); font-weight: 700;
+        }
+        .pin-digit:focus { border-color: var(--primary); box-shadow: 0 0 10px var(--shadow-color); }
+        .btn-lock { background: var(--primary); color: #ffffff; border: none; padding: 12px 28px; border-radius: 24px; font-weight: 600; cursor: pointer; margin-top: 10px; width: 100%; max-width: 250px; font-size: 14px; }
+
+        /* Modals Personnalisés (Pour PIN & Temps) */
+        .custom-modal {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+            display: none; justify-content: center; align-items: center; z-index: 999999; padding: 20px;
+        }
+        .modal-card {
+            background: var(--bg-card); border-radius: 20px; padding: 20px; width: 100%; max-width: 360px;
+            border: 2px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center;
+        }
+        .modal-title { font-family: var(--font-hand); font-size: 26px; color: var(--primary); margin-bottom: 10px; }
+        .modal-input { width: 100%; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border-color); margin: 12px 0; outline: none; font-size: 14px; }
+
+        .quote-footer { text-align: center; margin-top: 15px; font-family: var(--font-hand); font-size: 18px; color: var(--primary); }
+    </style>
+</head>
+<body data-theme="girly">
+
+    <!-- ÉCRAN D'ACCUEIL SPLASH SCREEN -->
+    <div id="splash-screen">
+        <div class="splash-logo">My Agenda 🌸🍀</div>
+    </div>
+
+    <!-- ÉCRAN DE VERROUILLAGE SÉCURITÉ -->
+    <div id="lock-screen">
+        <div class="lock-logo loc" data-key="title_locked">App Locked 🔒</div>
+        <p class="loc" data-key="locked_msg" style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">Enter your 4-digit PIN code to access</p>
+        
+        <div class="pin-input-group">
+            <input type="password" maxlength="1" class="pin-digit" inputmode="numeric" id="pin1" onkeyup="movePinFocus(1, event)">
+            <input type="password" maxlength="1" class="pin-digit" inputmode="numeric" id="pin2" onkeyup="movePinFocus(2, event)">
+            <input type="password" maxlength="1" class="pin-digit" inputmode="numeric" id="pin3" onkeyup="movePinFocus(3, event)">
+            <input type="password" maxlength="1" class="pin-digit" inputmode="numeric" id="pin4" onkeyup="movePinFocus(4, event)">
+        </div>
+        <button class="btn-lock loc" data-key="unlock_pin" onclick="unlockWithPIN()">Unlock App</button>
+    </div>
+
+    <!-- MODAL DE Saisie du CODE PIN -->
+    <div id="pin-modal" class="custom-modal">
+        <div class="modal-card">
+            <div class="modal-title loc" data-key="setup_pin">Set/Change PIN Code</div>
+            <p class="loc" data-key="pin_modal_desc" style="font-size: 12px; color: var(--text-muted);">Choose a 4-digit PIN code to protect your agenda.</p>
+            <div class="pin-input-group" style="justify-content: center;">
+                <input type="password" maxlength="1" class="pin-digit" inputmode="numeric" id="spin1" onkeyup="moveSetPinFocus(1, event)">
+                <input type="password" maxlength="1" class="pin-digit" inputmode="numeric" id="spin2" onkeyup="moveSetPinFocus(2, event)">
+                <input type="password" maxlength="1" class="pin-digit" inputmode="numeric" id="spin3" onkeyup="moveSetPinFocus(3, event)">
+                <input type="password" maxlength="1" class="pin-digit" inputmode="numeric" id="spin4" onkeyup="moveSetPinFocus(4, event)">
+            </div>
+            <div style="display:flex; gap: 8px;">
+                <button class="btn-mini" style="flex:1; justify-content:center; padding:10px;" onclick="closePinModal()">Cancel</button>
+                <button class="btn-lock" style="flex:1; margin-top:0; padding:10px;" onclick="savePINFromModal()">Save PIN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE RÉGLAGE DE L'HEURE DE BLOC -->
+    <div id="time-modal" class="custom-modal">
+        <div class="modal-card">
+            <div class="modal-title loc" data-key="set_time_title">Set Time / Period</div>
+            <input type="text" id="custom-time-input" class="modal-input" placeholder="e.g. 08:00 AM - 09:30 AM or Morning">
+            <div style="display:flex; gap: 8px;">
+                <button class="btn-mini" style="flex:1; justify-content:center; padding:10px;" onclick="closeTimeModal()">Cancel</button>
+                <button class="btn-lock" style="flex:1; margin-top:0; padding:10px;" onclick="saveBlockTime()">Save Time</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EN-TÊTE FIXE SUPERIEUR -->
+    <header class="top-header">
+        <div class="brand-title">🌸 My Agenda</div>
+        <div class="action-btns">
+            <button class="btn-mini loc" data-key="reset" onclick="resetDayTasks()">🔄 Reset</button>
+            <button class="btn-mini" onclick="exportPDF()">📄 PDF</button>
+        </div>
+    </header>
+
+    <div class="page-container">
+
+        <!-- ONGLET 1: MY DAILY PLANNER -->
+        <div id="page-planner" class="page active">
+            <div class="journal-book" id="pdf-content">
+                <div class="decor-header">
+                    <h1 class="loc" data-key="title">My Daily Planner & Routine</h1>
+                    <div class="subtitle loc" data-key="subtitle">Designed for Discipline, Growth & Mastery</div>
+                </div>
+
+                <div class="date-bar">
+                    <div>
+                        <span class="loc" data-key="date_label" style="font-size: 11px; font-weight: 600; color: var(--primary);">DATE:</span>
+                        <input type="date" id="current-date-picker" class="date-picker-input" onchange="switchDate()">
+                    </div>
+                    <!-- Dimanche = 1er jour (S M T W T F S) -->
+                    <div class="day-pills" id="day-pills-container">
+                        <div class="day-pill">S</div><div class="day-pill">M</div><div class="day-pill">T</div>
+                        <div class="day-pill">W</div><div class="day-pill">T</div><div class="day-pill">F</div><div class="day-pill">S</div>
+                    </div>
+                </div>
+
+                <!-- BLOCS DU PLANNER -->
+                <div id="planner-blocks-container"></div>
+                
+                <button class="add-task-btn loc" data-key="add_topic" style="width: 100%; justify-content: center; background: var(--bg-page); padding: 10px; border-radius: 12px; margin-bottom: 20px;" onclick="addNewBlock()">+ Add New Topic</button>
+
+                <!-- CHECKLIST & RAPPELS -->
+                <div style="background: var(--bg-page); border-radius: 16px; padding: 14px; margin-top: 15px;">
+                    <div class="block-header">
+                        <div class="block-title loc" data-key="checklist" style="color: var(--primary);">📌 Daily Checklist & Reminders</div>
+                        <span id="checklist-progress" style="font-size: 11px; font-weight: 600; color: var(--primary);">0 Done</span>
+                    </div>
+                    <div class="task-list" id="reminders-tasks"></div>
+                    <button class="add-task-btn loc" data-key="add_reminder" onclick="addReminder()">+ Add reminder</button>
+                </div>
+
+                <div class="quote-footer loc" data-key="quote">" Small daily progress creates unstoppable discipline. 🍀🌸 "</div>
+            </div>
+        </div>
+
+        <!-- ONGLET 2: CALENDRIER & OBJECTIFS DU MOIS -->
+        <div id="page-calendar" class="page">
+            <div class="journal-book">
+                <div class="calendar-header">
+                    <button class="btn-mini" onclick="navMonth(-1)">❮</button>
+                    <h2 id="cal-month-title" style="font-family: var(--font-title); font-size: 18px; color: var(--primary);">August 2026</h2>
+                    <button class="btn-mini" onclick="navMonth(1)">❯</button>
+                </div>
+
+                <!-- Dimanche = 1er jour -->
+                <div class="calendar-grid" id="cal-header-grid"></div>
+                <div class="calendar-grid" id="cal-grid-days"></div>
+
+                <!-- OBJECTIFS DU MOIS -->
+                <div class="goals-container">
+                    <div class="goals-title loc" data-key="month_goals">🎯 Monthly Goals</div>
+                    <div class="goal-item">
+                        <span class="goal-label loc" data-key="top_goal_lbl">Top-Level Goal (Main Focus)</span>
+                        <input type="text" id="top-goal" class="goal-input loc-ph" data-ph="top_goal_ph" placeholder="Your main priority this month..." onkeyup="saveGoals()">
+                    </div>
+                    <div class="goal-item">
+                        <span class="goal-label loc" data-key="mid_goal_lbl">Mid-Level Goal (Secondary)</span>
+                        <input type="text" id="mid-goal" class="goal-input loc-ph" data-ph="mid_goal_ph" placeholder="Secondary objective..." onkeyup="saveGoals()">
+                    </div>
+                    <div class="goal-item">
+                        <span class="goal-label loc" data-key="low_goal_lbl">Lower-Level Goal (Habit/Action)</span>
+                        <input type="text" id="low-goal" class="goal-input loc-ph" data-ph="low_goal_ph" placeholder="Daily micro-habit..." onkeyup="saveGoals()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET 3: JOURNAL & MEMOS -->
+        <div id="page-journal" class="page">
+            <div class="journal-book">
+                <div class="decor-header">
+                    <h1 class="loc" data-key="journal_title">Personal Journal 📝</h1>
+                    <div class="subtitle loc" data-key="journal_sub">Capture thoughts & reflections</div>
+                </div>
+
+                <label class="loc" data-key="mood_title" style="font-size: 12px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 6px;">How do you feel today?</label>
+                <div class="mood-box">
+                    <span class="mood-emoji" onclick="selectMood('🤩')">🤩</span>
+                    <span class="mood-emoji" onclick="selectMood('😊')">😊</span>
+                    <span class="mood-emoji" onclick="selectMood('😐')">😐</span>
+                    <span class="mood-emoji" onclick="selectMood('😔')">😔</span>
+                    <span class="mood-emoji" onclick="selectMood('😴')">😴</span>
+                </div>
+
+                <label class="loc" data-key="reflections" style="font-size: 12px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 6px;">Daily Reflections & Notes:</label>
+                <textarea class="journal-text loc-ph" data-ph="notes_ph" id="journal-notes" placeholder="Write about your day, wins, or gratitude..." onkeyup="saveDayStore()"></textarea>
+            </div>
+        </div>
+
+        <!-- ONGLET 4: OPTIONS & PARAMÈTRES -->
+        <div id="page-settings" class="page">
+            <div class="journal-book">
+                <div class="decor-header">
+                    <h1 class="loc" data-key="settings">Settings ⚙️</h1>
+                </div>
+
+                <!-- Choix de la Langue (7 Langues) -->
+                <div style="margin-bottom: 15px;">
+                    <label class="loc" data-key="set_language" style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 5px;">Application Language:</label>
+                    <select id="language-select" onchange="changeLanguage(this.value)" style="width: 100%; padding: 10px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--bg-page);">
+                        <option value="en">🇺🇸 English (US)</option>
+                        <option value="fr">🇫🇷 Français (FR)</option>
+                        <option value="es">🇪🇸 Español (ES)</option>
+                        <option value="pt">🇧🇷 Português (PT)</option>
+                        <option value="de">🇩🇪 Deutsch (DE)</option>
+                        <option value="it">🇮🇹 Italiano (IT)</option>
+                        <option value="ht">🇭🇹 Kreyòl Ayisyen (HT)</option>
+                    </select>
+                </div>
+
+                <!-- Thèmes Visuels (8 Thèmes) -->
+                <div style="margin-bottom: 15px;">
+                    <label class="loc" data-key="set_theme" style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 5px;">Visual Theme:</label>
+                    <select id="theme-select" onchange="applyTheme(this.value)" style="width: 100%; padding: 10px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--bg-page);">
+                        <option value="girly">🌸 Girly Romance (Pink Pastel)</option>
+                        <option value="ladyboss">👑 Ladyboss Gold (Elegance)</option>
+                        <option value="chic">✨ Very Chic (Minimalist)</option>
+                        <option value="dark">💼 Dark Executive Mode</option>
+                        <option value="matcha">🌿 Matcha Sage (Green)</option>
+                        <option value="ocean">🌊 Ocean Breeze (Blue)</option>
+                        <option value="lavender">💜 Lavender Dream (Purple)</option>
+                        <option value="peach">🌅 Sunset Peach (Peach)</option>
+                    </select>
+                </div>
+
+                <!-- Sécurité & PIN Code -->
+                <div style="margin-bottom: 15px;">
+                    <label class="loc" data-key="set_security" style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 5px;">App Lock & Security:</label>
+                    <div style="background: var(--bg-page); padding: 15px; border-radius: 12px;">
+                        <label style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                            <span class="loc" data-key="enable_lock">Enable 4-Digit PIN Lock</span>
+                            <input type="checkbox" id="security-enabled" onchange="toggleSecurity(this.checked)">
+                        </label>
+                        <button class="btn-mini loc" data-key="setup_pin" style="margin-top:10px; width:100%; justify-content:center;" onclick="openPinModal()">Set/Change PIN Code</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BARRE DE NAVIGATION BAS -->
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="switchTab('planner', this)">
+            <span class="nav-icon">🌸</span><span class="loc" data-key="nav_planner">Planner</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('calendar', this)">
+            <span class="nav-icon">📅</span><span class="loc" data-key="nav_calendar">Calendar</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('journal', this)">
+            <span class="nav-icon">📖</span><span class="loc" data-key="nav_journal">Journal</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('settings', this)">
+            <span class="nav-icon">⚙️</span><span class="loc" data-key="nav_settings">Options</span>
+        </div>
+    </nav>
+
+    <script>
+        // DICTIONNAIRE MULTILINGUE COMPLET (7 LANGUES)
+        const i18n = {
+            en: {
+                title: "My Daily Planner & Routine", subtitle: "Designed for Discipline & Growth", date_label: "DATE:", reset: "Reset",
+                checklist: "📌 Daily Checklist & Reminders", add_topic: "+ Add New Topic", add_task: "+ Add task", add_reminder: "+ Add reminder",
+                quote: '" Small daily progress creates unstoppable discipline. 🍀🌸 "', nav_planner: "Planner", nav_calendar: "Calendar", nav_journal: "Journal", nav_settings: "Options",
+                settings: "Settings ⚙️", set_language: "Application Language:", set_theme: "Visual Theme:", set_security: "App Lock & Security:", enable_lock: "Enable 4-Digit PIN Lock", setup_pin: "Set/Change PIN Code",
+                title_locked: "App Locked 🔒", locked_msg: "Enter your 4-digit PIN code to access", unlock_pin: "Unlock App",
+                month_goals: "🎯 Monthly Goals", top_goal_lbl: "Top-Level Goal (Main Focus)", mid_goal_lbl: "Mid-Level Goal (Secondary)", low_goal_lbl: "Lower-Level Goal (Habit/Action)",
+                top_goal_ph: "Your main priority this month...", mid_goal_ph: "Secondary objective...", low_goal_ph: "Daily micro-habit...",
+                journal_title: "Personal Journal 📝", journal_sub: "Capture thoughts & reflections", mood_title: "How do you feel today?", reflections: "Daily Reflections & Notes:", notes_ph: "Write about your day, wins, or gratitude...",
+                set_time_title: "Set Custom Time / Period", pin_modal_desc: "Choose a 4-digit PIN code to protect your agenda.",
+                days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+            },
+            fr: {
+                title: "Mon Agenda Quotidien", subtitle: "Conçu pour la Discipline et le Succès", date_label: "DATE :", reset: "Réinit.",
+                checklist: "📌 Checklist & Rappels du Jour", add_topic: "+ Ajouter une rubrique", add_task: "+ Ajouter tâche", add_reminder: "+ Ajouter rappel",
+                quote: '" Un petit progrès quotidien crée une discipline imbattable. 🍀🌸 "', nav_planner: "Planner", nav_calendar: "Calendrier", nav_journal: "Journal", nav_settings: "Options",
+                settings: "Paramètres ⚙️", set_language: "Langue de l'application :", set_theme: "Thème Visuel :", set_security: "Sécurité & Verrouillage :", enable_lock: "Activer Code PIN à 4 chiffres", setup_pin: "Définir/Changer Code PIN",
+                title_locked: "App Verrouillée 🔒", locked_msg: "Entrez votre code PIN à 4 chiffres", unlock_pin: "Déverrouiller",
+                month_goals: "🎯 Objectifs du Mois", top_goal_lbl: "Objectif Prioritaire (Top-Level)", mid_goal_lbl: "Objectif Secondaire (Mid-Level)", low_goal_lbl: "Petite Habitude (Lower-Level)",
+                top_goal_ph: "Ta priorité absolue ce mois-ci...", mid_goal_ph: "Objectif secondaire...", low_goal_ph: "Petite habitude quotidienne...",
+                journal_title: "Mon Journal Intime 📝", journal_sub: "Pensées & réflexions du jour", mood_title: "Comment te sens-tu aujourd'hui ?", reflections: "Réflexions & Notes Quotidiennes :", notes_ph: "Raconte ta journée, tes victoires ou tes gratitudes...",
+                set_time_title: "Changer l'heure / Période", pin_modal_desc: "Choisis un code PIN à 4 chiffres pour protéger ton agenda.",
+                days: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
+                months: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
+            },
+            es: {
+                title: "Mi Agenda Diaria", subtitle: "Diseñado para la Disciplina y el Crecimiento", date_label: "FECHA:", reset: "Reiniciar",
+                checklist: "📌 Lista de Verificación Diaria", add_topic: "+ Añadir Nuevo Tema", add_task: "+ Añadir tarea", add_reminder: "+ Añadir recordatorio",
+                quote: '" El pequeño progreso diario crea una disciplina imparable. 🍀🌸 "', nav_planner: "Planificador", nav_calendar: "Calendario", nav_journal: "Diario", nav_settings: "Opciones",
+                settings: "Ajustes ⚙️", set_language: "Idioma de la aplicación:", set_theme: "Tema Visual:", set_security: "Seguridad y Bloqueo:", enable_lock: "Activar Código PIN", setup_pin: "Establecer/Cambiar PIN",
+                title_locked: "App Bloqueada 🔒", locked_msg: "Introduce tu código PIN de 4 dígitos", unlock_pin: "Desbloquear",
+                month_goals: "🎯 Objetivos Mensuales", top_goal_lbl: "Objetivo Principal", mid_goal_lbl: "Objetivo Secundario", low_goal_lbl: "Hábito Diario",
+                top_goal_ph: "Tu prioridad este mes...", mid_goal_ph: "Objetivo secundario...", low_goal_ph: "Micro-hábito diario...",
+                journal_title: "Diario Personal 📝", journal_sub: "Captura pensamientos y reflexiones", mood_title: "¿Cómo te sientes hoy?", reflections: "Reflexiones y Notas Diarias:", notes_ph: "Escribe sobre tu día, logros o gratitud...",
+                set_time_title: "Ajustar Hora / Período", pin_modal_desc: "Elige un PIN de 4 dígitos para proteger tu agenda.",
+                days: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+                months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+            },
+            pt: {
+                title: "Minha Agenda Diária", subtitle: "Projetado para Disciplina e Crescimento", date_label: "DATA:", reset: "Redefinir",
+                checklist: "📌 Lista de Verificação Diária", add_topic: "+ Adicionar Tópico", add_task: "+ Adicionar tarefa", add_reminder: "+ Adicionar lembrete",
+                quote: '" O pequeno progresso diário cria uma disciplina imparável. 🍀🌸 "', nav_planner: "Agenda", nav_calendar: "Calendário", nav_journal: "Diário", nav_settings: "Opções",
+                settings: "Configurações ⚙️", set_language: "Idioma do aplicativo:", set_theme: "Tema Visual:", set_security: "Segurança e Bloqueio:", enable_lock: "Ativar Bloqueio PIN", setup_pin: "Definir/Alterar PIN",
+                title_locked: "App Bloqueado 🔒", locked_msg: "Digite seu PIN de 4 dígitos", unlock_pin: "Desbloquear",
+                month_goals: "🎯 Metas do Mês", top_goal_lbl: "Meta Principal", mid_goal_lbl: "Meta Secundária", low_goal_lbl: "Hábito Diário",
+                top_goal_ph: "Sua maior prioridade este mês...", mid_goal_ph: "Objetivo secundário...", low_goal_ph: "Micro-hábito diário...",
+                journal_title: "Diário Pessoal 📝", journal_sub: "Pensamentos e reflexões", mood_title: "Como você se sente hoje?", reflections: "Reflexões Diárias:", notes_ph: "Escreva sobre seu dia ou gratidão...",
+                set_time_title: "Definir Horário", pin_modal_desc: "Escolha um PIN de 4 dígitos para proteger seu aplicativo.",
+                days: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+                months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+            },
+            de: {
+                title: "Mein Tagesplaner", subtitle: "Entworfen für Disziplin & Erfolg", date_label: "DATUM:", reset: "Zurücksetzen",
+                checklist: "📌 Tägliche Checkliste", add_topic: "+ Thema hinzufügen", add_task: "+ Aufgabe hinzufügen", add_reminder: "+ Erinnerung hinzufügen",
+                quote: '" Kleiner täglicher Fortschritt bringt unaufhaltsame Disziplin. 🍀🌸 "', nav_planner: "Planer", nav_calendar: "Kalender", nav_journal: "Tagebuch", nav_settings: "Optionen",
+                settings: "Einstellungen ⚙️", set_language: "Sprache der App:", set_theme: "Visuelles Thema:", set_security: "Sicherheit & Sperre:", enable_lock: "4-stellige PIN aktivieren", setup_pin: "PIN festlegen/ändern",
+                title_locked: "App Gesperrt 🔒", locked_msg: "Geben Sie Ihre 4-stellige PIN ein", unlock_pin: "Entsperren",
+                month_goals: "🎯 Monatsziele", top_goal_lbl: "Hauptziel", mid_goal_lbl: "Sekundärziel", low_goal_lbl: "Gewohnheit",
+                top_goal_ph: "Ihre Hauptpriorität diesen Monat...", mid_goal_ph: "Zweites Ziel...", low_goal_ph: "Tägliche Gewohnheit...",
+                journal_title: "Persönliches Tagebuch 📝", journal_sub: "Gedanken und Reflexionen", mood_title: "Wie fühlst du dich heute?", reflections: "Tägliche Notizen:", notes_ph: "Schreibe über deinen Tag...",
+                set_time_title: "Zeit festlegen", pin_modal_desc: "Wählen Sie eine 4-stellige PIN zum Schutz.",
+                days: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+                months: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
+            },
+            it: {
+                title: "La Mia Agenda Giornaliera", subtitle: "Progettato per Disciplina e Crescita", date_label: "DATA:", reset: "Ripristina",
+                checklist: "📌 Checklist Giornaliera", add_topic: "+ Aggiungi Argomento", add_task: "+ Aggiungi attività", add_reminder: "+ Aggiungi promemoria",
+                quote: '" Piccoli progressi quotidiani creano una disciplina imbattibile. 🍀🌸 "', nav_planner: "Planner", nav_calendar: "Calendario", nav_journal: "Diario", nav_settings: "Opzioni",
+                settings: "Impostazioni ⚙️", set_language: "Lingua dell'app:", set_theme: "Tema Visivo:", set_security: "Sicurezza e Blocco:", enable_lock: "Attiva Blocco con PIN", setup_pin: "Imposta/Modifica PIN",
+                title_locked: "App Bloccata 🔒", locked_msg: "Inserisci il tuo PIN a 4 cifre", unlock_pin: "Sblocca",
+                month_goals: "🎯 Obiettivi del Mese", top_goal_lbl: "Obiettivo Principale", mid_goal_lbl: "Obiettivo Secondario", low_goal_lbl: "Abitudine Giornaliera",
+                top_goal_ph: "La tua priorità questo mese...", mid_goal_ph: "Obiettivo secondario...", low_goal_ph: "Micro-abitudine...",
+                journal_title: "Diario Personale 📝", journal_sub: "Pensieri e riflessioni", mood_title: "Come ti senti oggi?", reflections: "Riflessioni Giornaliere:", notes_ph: "Scrivi della tua giornata...",
+                set_time_title: "Imposta Orario", pin_modal_desc: "Scegli un PIN a 4 cifre per proteggere l'agenda.",
+                days: ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"],
+                months: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
+            },
+            ht: {
+                title: "Kaye Planifikasyon Mwen", subtitle: "Fèt pou Disiplin ak Siksè", date_label: "DAT:", reset: "Erase",
+                checklist: "📌 Lis Task ak Rapèl Pou Jounen An", add_topic: "+ Ajoute Yon Seksyon", add_task: "+ Ajoute yon task", add_reminder: "+ Ajoute yon rapèl",
+                quote: '" Ti pwogrè chak jou kreye yon disiplin solid. 🍀🌸 "', nav_planner: "Planifye", nav_calendar: "Kalandriye", nav_journal: "Jounal", nav_settings: "Opsyon",
+                settings: "Paramèt ⚙️", set_language: "Lang Aplikasyon an:", set_theme: "Koulè ak Estil:", set_security: "Sekirite ak Blokaj:", enable_lock: "Aktivasyon Kòd PIN 4 Chif", setup_pin: "Mete / Chanje Kòd PIN",
+                title_locked: "Aplikasyon an Bloke 🔒", locked_msg: "Antre kòd PIN 4 chif ou an", unlock_pin: "Debloke",
+                month_goals: "🎯 Objektif Pou Mwa An", top_goal_lbl: "Gwo Objektif Prensipal", mid_goal_lbl: "Dezyèm Objektif", low_goal_lbl: "Ti Abitid Chak Jou",
+                top_goal_ph: "Sa ki pi enpòtan pou ou mwa sa...", mid_goal_ph: "Dezyèm objektif ou...", low_goal_ph: "Ti abitid pou chak jou...",
+                journal_title: "Jounal Entim Mwen 📝", journal_sub: "Ekri lide ak sa w panse", mood_title: "Kouman ou santi w jodi an?", reflections: "Nòt ak Refleksyon:", notes_ph: "Ekri sou jounen w ak sa w reyalize...",
+                set_time_title: "Regle Lè / Peryòd", pin_modal_desc: "Chwazi yon kod PIN 4 chif pou pwoteje kaye w la.",
+                days: ["Dim", "Len", "Mad", "Mèk", "Jedi", "Vand", "Sam"],
+                months: ["Janvye", "Fevriye", "Mas", "Avril", "Mè", "Jwen", "Jiyè", "Out", "Septanm", "Oktòb", "Novanm", "Desanm"]
+            }
+        };
+
+        let activeDateKey = new Date().toISOString().split('T')[0];
+        let calCurrentDate = new Date();
+        let currentDayData = {};
+        let editingBlockIndex = null;
+
+        // INITIALISATION
+        window.onload = () => {
+            document.getElementById('current-date-picker').value = activeDateKey;
+            loadDayStore();
+            applyLanguage(localStorage.getItem('app_language') || 'en');
+            applyTheme(localStorage.getItem('app_theme') || 'girly');
+            checkSecurityOnLaunch();
+        };
+
+        // GESTION LANGUE
+        function changeLanguage(lang) {
+            localStorage.setItem('app_language', lang);
+            applyLanguage(lang);
+        }
+
+        function applyLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.getElementById('language-select').value = lang;
+            
+            const dictionary = i18n[lang] || i18n['en'];
+
+            // Traduction des éléments textuels
+            document.querySelectorAll('.loc').forEach(el => {
+                const key = el.dataset.key;
+                if(dictionary[key]) el.textContent = dictionary[key];
+            });
+
+            // Traduction des Placeholders
+            document.querySelectorAll('.loc-ph').forEach(el => {
+                const phKey = el.dataset.ph;
+                if(dictionary[phKey]) el.placeholder = dictionary[phKey];
+            });
+
+            // Mettre à jour l'en-tête du calendrier (Dimanche en 1er)
+            const calHeaderGrid = document.getElementById('cal-header-grid');
+            if(calHeaderGrid) {
+                calHeaderGrid.innerHTML = "";
+                dictionary.days.forEach(dayName => {
+                    calHeaderGrid.innerHTML += `<div class="day-name">${dayName}</div>`;
+                });
+            }
+
+            renderCalendar();
+        }
+
+        // CHARGEMENT DONNÉES QUOTIDIENNES
+        function loadDayStore() {
+            const raw = localStorage.getItem(`agenda_data_${activeDateKey}`);
+            currentDayData = raw ? JSON.parse(raw) : { blocks: [], reminders: [], mood: "", notes: "" };
+            renderBlocks();
+            renderReminders();
+            document.getElementById('journal-notes').value = currentDayData.notes || "";
+            
+            document.querySelectorAll('.mood-emoji').forEach(e => e.classList.remove('selected'));
+            if(currentDayData.mood) {
+                const selectedEl = Array.from(document.querySelectorAll('.mood-emoji')).find(el => el.innerText === currentDayData.mood);
+                if(selectedEl) selectedEl.classList.add('selected');
+            }
+            updateChecklistCount();
+        }
+
+        function saveDayStore() {
+            currentDayData.notes = document.getElementById('journal-notes').value;
+            localStorage.setItem(`agenda_data_${activeDateKey}`, JSON.stringify(currentDayData));
+            updateChecklistCount();
+        }
+
+        // BLOCS DU PLANNER
+        function renderBlocks() {
+            const container = document.getElementById('planner-blocks-container');
+            container.innerHTML = "";
+            (currentDayData.blocks || []).forEach((block, bIndex) => {
+                container.innerHTML += `
+                    <div class="time-block" style="background:${block.bgColor}; border-color:${block.borderColor};">
+                        <div class="block-header">
+                            <input type="text" class="block-title-input" value="${block.title}" onkeyup="updateBlockTitle(${bIndex}, this.value)">
+                            <span class="time-badge" onclick="openTimeModal(${bIndex})">🕒 ${block.time || 'Set Time'}</span>
+                            <span class="delete-btn" onclick="deleteBlock(${bIndex})">✕</span>
+                        </div>
+                        <div class="task-list" id="tasks-block-${bIndex}"></div>
+                        <button class="add-task-btn loc" data-key="add_task" onclick="addTaskToBlock(${bIndex})">+ Add task</button>
+                    </div>
+                `;
+                renderBlockTasks(bIndex, block.tasks);
+            });
+            const lang = localStorage.getItem('app_language') || 'en';
+            applyLanguage(lang);
+        }
+
+        function renderBlockTasks(bIndex, tasks) {
+            const container = document.getElementById(`tasks-block-${bIndex}`);
+            (tasks || []).forEach((item, tIndex) => {
+                const div = document.createElement('div');
+                div.className = `task-item ${item.done ? 'done' : ''}`;
+                div.innerHTML = `
+                    <div class="custom-check ${item.done ? 'checked' : ''}" onclick="toggleBlockCheck(${bIndex}, ${tIndex})"></div>
+                    <input type="text" class="task-input-text" placeholder="Write task..." value="${item.text}" onkeyup="updateBlockTaskText(${bIndex}, ${tIndex}, this.value)">
+                    <span class="delete-btn" onclick="deleteBlockTask(${bIndex}, ${tIndex})">✕</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function addNewBlock() {
+            const pastels = [
+                {bg:'var(--block-1-bg)', bd:'var(--block-1-border)'},
+                {bg:'var(--block-2-bg)', bd:'var(--block-2-border)'},
+                {bg:'var(--block-3-bg)', bd:'var(--block-3-border)'}
+            ];
+            const color = pastels[currentDayData.blocks.length % pastels.length];
+            currentDayData.blocks.push({ title: 'New Topic', time: 'Any Time', tasks: [{text:'', done:false}], bgColor: color.bg, borderColor: color.bd });
+            saveDayStore(); renderBlocks();
+        }
+
+        // MODAL D'ÉDITION D'HEURE PERSONNALISÉE
+        function openTimeModal(bIndex) {
+            editingBlockIndex = bIndex;
+            document.getElementById('custom-time-input').value = currentDayData.blocks[bIndex].time || '';
+            document.getElementById('time-modal').style.display = 'flex';
+        }
+        function closeTimeModal() { document.getElementById('time-modal').style.display = 'none'; }
+        function saveBlockTime() {
+            if(editingBlockIndex !== null) {
+                const newTime = document.getElementById('custom-time-input').value;
+                currentDayData.blocks[editingBlockIndex].time = newTime || 'Set Time';
+                saveDayStore(); renderBlocks(); closeTimeModal();
+            }
+        }
+
+        function updateBlockTitle(bIndex, val) { currentDayData.blocks[bIndex].title = val; saveDayStore(); }
+        function addTaskToBlock(bIndex) { currentDayData.blocks[bIndex].tasks.push({text:"", done:false}); saveDayStore(); renderBlocks(); }
+        function deleteBlock(bIndex) { currentDayData.blocks.splice(bIndex, 1); saveDayStore(); renderBlocks(); }
+        function toggleBlockCheck(bIndex, tIndex) { currentDayData.blocks[bIndex].tasks[tIndex].done = !currentDayData.blocks[bIndex].tasks[tIndex].done; saveDayStore(); renderBlocks(); }
+        function updateBlockTaskText(bIndex, tIndex, val) { currentDayData.blocks[bIndex].tasks[tIndex].text = val; saveDayStore(); }
+        function deleteBlockTask(bIndex, tIndex) { currentDayData.blocks[bIndex].tasks.splice(tIndex, 1); saveDayStore(); renderBlocks(); }
+
+        // RAPPELS & CHECKLIST
+        function renderReminders() {
+            const container = document.getElementById('reminders-tasks');
+            container.innerHTML = "";
+            (currentDayData.reminders || []).forEach((item, rIndex) => {
+                const div = document.createElement('div');
+                div.className = `task-item ${item.done ? 'done' : ''}`;
+                div.innerHTML = `
+                    <div class="custom-check ${item.done ? 'checked' : ''}" onclick="toggleReminderCheck(${rIndex})"></div>
+                    <input type="text" class="task-input-text" placeholder="Reminder item..." value="${item.text}" onkeyup="updateReminderText(${rIndex}, this.value)">
+                    <span class="delete-btn" onclick="deleteReminder(${rIndex})">✕</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function addReminder() {
+            if(!currentDayData.reminders) currentDayData.reminders = [];
+            currentDayData.reminders.push({text:"", done:false});
+            saveDayStore(); renderReminders();
+        }
+        function toggleReminderCheck(rIndex) { currentDayData.reminders[rIndex].done = !currentDayData.reminders[rIndex].done; saveDayStore(); renderReminders(); }
+        function updateReminderText(rIndex, val) { currentDayData.reminders[rIndex].text = val; saveDayStore(); }
+        function deleteReminder(rIndex) { currentDayData.reminders.splice(rIndex, 1); saveDayStore(); renderReminders(); }
+
+        function updateChecklistCount() {
+            const reminders = currentDayData.reminders || [];
+            const done = reminders.filter(r => r.done).length;
+            document.getElementById('checklist-progress').innerText = `${done}/${reminders.length} Done`;
+        }
+
+        function resetDayTasks() {
+            (currentDayData.blocks || []).forEach(b => b.tasks.forEach(t => t.done = false));
+            (currentDayData.reminders || []).forEach(r => r.done = false);
+            saveDayStore(); loadDayStore();
+        }
+
+        function selectMood(emoji) { currentDayData.mood = emoji; saveDayStore(); loadDayStore(); }
+        
+        function switchDate() {
+            activeDateKey = document.getElementById('current-date-picker').value;
+            updateDayPillsActive();
+            loadDayStore();
+        }
+
+        function updateDayPillsActive() {
+            const dateObj = new Date(activeDateKey);
+            const dayIndex = dateObj.getDay(); // 0 = Dimanche (Sunday)
+            const pills = document.querySelectorAll('.day-pill');
+            pills.forEach((p, i) => p.classList.toggle('active', i === dayIndex));
+        }
+
+        // NAVIGATION ONGLETS
+        function switchTab(pageId, navEl) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(`page-${pageId}`).classList.add('active');
+            if(navEl) navEl.classList.add('active');
+            if(pageId === 'calendar') renderCalendar();
+        }
+
+        // CALENDRIER (SUNDAY FIRST)
+        function renderCalendar() {
+            const grid = document.getElementById('cal-grid-days');
+            if(!grid) return;
+            grid.innerHTML = "";
+            
+            const year = calCurrentDate.getFullYear();
+            const month = calCurrentDate.getMonth();
+
+            const lang = localStorage.getItem('app_language') || 'en';
+            const dict = i18n[lang] || i18n['en'];
+
+            document.getElementById('cal-month-title').innerText = `${dict.months[month]} ${year}`;
+
+            // Dimanche est l'index 0
+            const firstDayIndex = new Date(year, month, 1).getDay(); 
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 0; i < firstDayIndex; i++) grid.innerHTML += `<div></div>`;
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const savedRaw = localStorage.getItem(`agenda_data_${dateKey}`);
+                const saved = savedRaw ? JSON.parse(savedRaw) : {};
+
+                grid.innerHTML += `
+                    <div class="cal-day ${dateKey === activeDateKey ? 'active-day' : ''}" onclick="selectCalDate('${dateKey}')">
+                        ${day}
+                        ${saved.mood ? `<span class="mood-dot">${saved.mood}</span>` : ''}
+                    </div>
+                `;
+            }
+            loadGoals();
+        }
+
+        function navMonth(dir) { calCurrentDate.setMonth(calCurrentDate.getMonth() + dir); renderCalendar(); }
+        function selectCalDate(dateKey) {
+            activeDateKey = dateKey;
+            document.getElementById('current-date-picker').value = activeDateKey;
+            updateDayPillsActive();
+            switchTab('planner', document.querySelectorAll('.nav-item')[0]);
+            loadDayStore();
+        }
+
+        // OBJECTIFS DU MOIS
+        function saveGoals() {
+            const mKey = `${calCurrentDate.getFullYear()}-${calCurrentDate.getMonth()}`;
+            const goals = { top: document.getElementById('top-goal').value, mid: document.getElementById('mid-goal').value, low: document.getElementById('low-goal').value };
+            localStorage.setItem(`month_goals_${mKey}`, JSON.stringify(goals));
+        }
+
+        function loadGoals() {
+            const mKey = `${calCurrentDate.getFullYear()}-${calCurrentDate.getMonth()}`;
+            const goals = JSON.parse(localStorage.getItem(`month_goals_${mKey}`) || '{"top":"","mid":"","low":""}');
+            document.getElementById('top-goal').value = goals.top || "";
+            document.getElementById('mid-goal').value = goals.mid || "";
+            document.getElementById('low-goal').value = goals.low || "";
+        }
+
+        // THÈMES VISUELS
+        function applyTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            document.getElementById('theme-select').value = theme;
+            localStorage.setItem('app_theme', theme);
+        }
+
+        // EXPORT PDF
+        function exportPDF() {
+            const element = document.getElementById('pdf-content');
+            html2pdf().from(element).save(`MyAgenda_${activeDateKey}.pdf`);
+        }
+
+        // GESTION DU CODE PIN & VERROUILLAGE SÉCURITÉ
+        function toggleSecurity(isEnable) {
+            if(isEnable) {
+                openPinModal();
+            } else {
+                localStorage.setItem('app_security', 'false');
+            }
+        }
+
+        function openPinModal() {
+            document.getElementById('spin1').value = ""; document.getElementById('spin2').value = "";
+            document.getElementById('spin3').value = ""; document.getElementById('spin4').value = "";
+            document.getElementById('pin-modal').style.display = 'flex';
+            document.getElementById('spin1').focus();
+        }
+        function closePinModal() {
+            document.getElementById('pin-modal').style.display = 'none';
+            if(!localStorage.getItem('app_pin')) {
+                document.getElementById('security-enabled').checked = false;
+            }
+        }
+
+        function moveSetPinFocus(current, e) {
+            const input = document.getElementById(`spin${current}`);
+            if(e.key === "Backspace" && current > 1 && !input.value) {
+                document.getElementById(`spin${current - 1}`).focus();
+            } else if(input.value.length === 1 && current < 4) {
+                document.getElementById(`spin${current + 1}`).focus();
+            }
+        }
+
+        function savePINFromModal() {
+            const pin = `${document.getElementById('spin1').value}${document.getElementById('spin2').value}${document.getElementById('spin3').value}${document.getElementById('spin4').value}`;
+            if(pin.length === 4 && !isNaN(pin)) {
+                localStorage.setItem('app_pin', pin);
+                localStorage.setItem('app_security', 'true');
+                document.getElementById('security-enabled').checked = true;
+                closePinModal();
+            } else {
+                alert("Please enter a valid 4-digit PIN.");
+            }
+        }
+
+        function checkSecurityOnLaunch() {
+            const securityOn = localStorage.getItem('app_security') === 'true';
+            document.getElementById('security-enabled').checked = securityOn;
+            if(securityOn && localStorage.getItem('app_pin')) {
+                document.getElementById('lock-screen').style.display = 'flex';
+                document.getElementById('pin1').focus();
+            }
+        }
+
+        function movePinFocus(current, e) {
+            const input = document.getElementById(`pin${current}`);
+            if(e.key === "Backspace" && current > 1 && !input.value) {
+                document.getElementById(`pin${current - 1}`).focus();
+            } else if(input.value.length === 1 && current < 4) {
+                document.getElementById(`pin${current + 1}`).focus();
+            }
+            
+            // Auto déverrouillage dès que le 4ème chiffre est entré
+            if(current === 4 && input.value.length === 1) {
+                unlockWithPIN();
+            }
+        }
+
+        function unlockWithPIN() {
+            const enteredPin = `${document.getElementById('pin1').value}${document.getElementById('pin2').value}${document.getElementById('pin3').value}${document.getElementById('pin4').value}`;
+            const savedPin = localStorage.getItem('app_pin');
+            if(enteredPin === savedPin) {
+                document.getElementById('lock-screen').style.display = 'none';
+            } else {
+                alert("Incorrect PIN code. Try again.");
+                document.getElementById('pin1').value = ""; document.getElementById('pin2').value = "";
+                document.getElementById('pin3').value = ""; document.getElementById('pin4').value = "";
+                document.getElementById('pin1').focus();
+            }
+        }
+
+        // SERVICE WORKER
+        if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+            window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
+        }
+    </script>
+</body>
+</html>
+
+
